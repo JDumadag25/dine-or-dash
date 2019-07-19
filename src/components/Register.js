@@ -6,6 +6,22 @@ class Register extends React.Component{
   state = {}
   handleChange = (e, { value }) => this.setState({ value })
 
+  handleInput = (event) => {
+  this.setState({[event.target.name]: event.target.value
+    })
+  }
+
+handleSubmit = (event) => {
+ event.preventDefault();
+ console.log(this.props);
+ if (this.state.password === this.state.passwordConfirmation){
+ this.props.onSubmit(this.state.email, this.state.password, this.props.history.push)
+} else {
+ this.setState({errors: ['Passwords do not match']})
+}
+}
+
+
   render(){
     return(
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -14,15 +30,17 @@ class Register extends React.Component{
             Log-in to your account
           </Header>
 
-      <Form size='large'>
+      <Form size='large' onSubmit={this.handleSubmit}>
       <Segment stacked>
-        <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
+        <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' name='email' onChange={this.handleInput} />
         <Form.Input
           fluid
           icon='lock'
           iconPosition='left'
           placeholder='Password'
           type='password'
+          name='password'
+          onChange={this.handleInput}
         />
         <Form.Input
           fluid
@@ -30,6 +48,8 @@ class Register extends React.Component{
           iconPosition='left'
           placeholder='Comfirm Password'
           type='password'
+          name='passwordConfirmation'
+          onChange={this.handleInput}
         />
         <Form.Field>
            Are you an Owner?
