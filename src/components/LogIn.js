@@ -4,6 +4,7 @@ import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui
 class LogIn extends React.Component{
   render(){
     return(
+      <div>
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='teal' textAlign='center'>
@@ -26,11 +27,11 @@ class LogIn extends React.Component{
       </Segment>
     </Form>
     <Message>
-      New to us? <a href='#'>Sign Up</a>
+      New to us? <a href='http://localhost:3001/register'>Sign Up</a>
     </Message>
   </Grid.Column>
 </Grid>
-
+</div>
     )
   }
 }

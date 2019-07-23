@@ -4,12 +4,23 @@ import './App.css';
 
 import LogIn from './components/LogIn'
 import Register from './components/Register'
+import Homepage from './components/Homepage'
+import { BrowserRouter as Router, Route, Redirect, Switch, withRouter } from 'react-router-dom';
 
 class App extends React.Component{
 
   render(){
     return(
-      <Register/>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Homepage} />
+
+          <Route path="/login" render={(props) => <LogIn/>} />
+
+          <Route path="/register" render={(props) => <Register submitLabel="Register"/>} />
+
+        </Switch>
+      </Router>
     )
   }
 }
