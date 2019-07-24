@@ -9,6 +9,30 @@ import { BrowserRouter as Router, Route, Redirect, Switch, withRouter } from 're
 
 class App extends React.Component{
 
+  register = (email, password, value, callback) => {
+    fetch('http://localhost:3000/users/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({ email, password, value })})
+      .then(res => res.json())
+      .then(json => {
+        if(json.token){
+        localStorage.setItem('token', json.token);
+        localStorage.setItem('user_id', json.user_id);
+        localStorage.setItem('username', json.email);
+        localStorage.setItem('owner', json.value);
+
+        callback("/homepage");
+      } else {
+        console.log(json.errors);
+        this.setState({errors:[json.errors]})
+      }
+      });
+    }
+
   render(){
     return(
       <Router>
@@ -17,7 +41,7 @@ class App extends React.Component{
 
           <Route path="/login" render={(props) => <LogIn/>} />
 
-          <Route path="/register" render={(props) => <Register submitLabel="Register"/>} />
+          <Route path="/register" render={(props) => <Register submitLabel="Register" onSubmit={this.register}/>} />
 
         </Switch>
       </Router>
