@@ -5,6 +5,8 @@ import './App.css';
 import LogIn from './components/LogIn'
 import Register from './components/Register'
 import Homepage from './components/Homepage'
+import Splashpage from './components/Splashpage'
+
 import { BrowserRouter as Router, Route, Redirect, Switch, withRouter } from 'react-router-dom';
 
 class App extends React.Component{
@@ -37,12 +39,13 @@ class App extends React.Component{
     return(
       <Router>
         <Switch>
-          <Route exact path="/" component={Homepage} />
+          <Route exact path="/" component={Splashpage} />
 
           <Route path="/login" render={(props) => <LogIn/>} />
 
-          <Route path="/register" render={(props) => <Register submitLabel="Register" onSubmit={this.register}/>} />
+          <Route path="/register" render={(props) => <Register submitLabel="Register" onSubmit={this.register} {...props}/>} />
 
+        { localStorage.getItem('token') ? <Route exact path="/home" render={(props) => <Homepage/>} /> : <Redirect to="/login" /> }
         </Switch>
       </Router>
     )
