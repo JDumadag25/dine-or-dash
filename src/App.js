@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch, withRouter } from 're
 class App extends React.Component{
 
   register = (email, password, value, callback) => {
+    console.log('posting');
     fetch('http://localhost:3000/users/', {
       method: 'POST',
       headers: {

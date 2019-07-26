@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment, Radio } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Image, Message, Segment, Checkbox} from 'semantic-ui-react'
 
 class Register extends React.Component{
 
@@ -7,7 +7,7 @@ class Register extends React.Component{
     errors: []
   }
 
-  handleChange = (e, { value }) => this.setState({ value })
+
 
   handleInput = (event) => {
   this.setState({[event.target.name]: event.target.value
@@ -57,26 +57,9 @@ handleSubmit = (event) => {
           onChange={this.handleInput}
         />
         <Form.Field>
-           Are you an Owner?
-         </Form.Field>
-        <Form.Field>
-            <Radio
-              label='Yes'
-              name='radioGroup'
-              value='Yes'
-              checked={this.state.value === 'Yes'}
-              onChange={this.handleChange}
-            />
-          </Form.Field>
-          <Form.Field>
-            <Radio
-              label='No'
-              name='radioGroup'
-              value='No'
-              checked={this.state.value === 'No'}
-              onChange={this.handleChange}
-            />
-          </Form.Field>
+          <Checkbox label='Are you an owner?'/>
+        </Form.Field>
+
         <Button color='teal' fluid size='large'>
           Register
         </Button>
@@ -87,7 +70,7 @@ handleSubmit = (event) => {
     </Message>
   </Grid.Column>
 </Grid>
-</div>  
+</div>
     )
   }
 }
