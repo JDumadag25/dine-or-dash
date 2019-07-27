@@ -4,10 +4,16 @@ import { Button, Form, Grid, Header, Image, Message, Segment, Checkbox} from 'se
 class Register extends React.Component{
 
   state = {
-    errors: []
+    errors: [],
+    owner: false
   }
 
+toggleOwner = async () => {
 
+  const owner = !(this.state.owner);
+  await this.setState({owner})
+
+}
 
   handleInput = (event) => {
   this.setState({[event.target.name]: event.target.value
@@ -57,7 +63,7 @@ handleSubmit = (event) => {
           onChange={this.handleInput}
         />
         <Form.Field>
-          <Checkbox label='Are you an owner?'/>
+          <Checkbox label='Are you an owner?' onChange={this.toggleOwner}/>
         </Form.Field>
 
         <Button color='teal' fluid size='large'>
