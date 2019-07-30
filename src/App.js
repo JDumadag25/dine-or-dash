@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch, withRouter } from 're
 
 class App extends React.Component{
 
-  register = (email, password, value, callback) => {
+  register = (email, password, owner, callback) => {
     console.log('posting');
     fetch('http://localhost:3000/users/', {
       method: 'POST',
@@ -19,7 +19,7 @@ class App extends React.Component{
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
-      body: JSON.stringify({ email, password, value })})
+      body: JSON.stringify({ email, password, owner})})
       .then(res => res.json())
       .then(json => {
         if(json.token){

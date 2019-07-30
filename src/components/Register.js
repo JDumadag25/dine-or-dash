@@ -24,7 +24,7 @@ handleSubmit = (event) => {
    event.preventDefault();
    console.log(this.props);
    if (this.state.password === this.state.passwordConfirmation){
-   this.props.onSubmit(this.state.email, this.state.password, this.state.value, this.props.history.push)
+   this.props.onSubmit(this.state.email, this.state.password, this.state.owner, this.props.history.push)
   } else {
    this.setState({errors: ['Passwords do not match']})
   }
