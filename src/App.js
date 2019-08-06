@@ -11,9 +11,10 @@ import { BrowserRouter as Router, Route, Redirect, Switch, withRouter } from 're
 
 class App extends React.Component{
 
+
   register = (email, password, owner, callback) => {
     console.log('posting');
-    fetch('http://localhost:3000/users/', {
+    fetch('http://localhost:3000/api/v1/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,11 +23,12 @@ class App extends React.Component{
       body: JSON.stringify({ email, password, owner})})
       .then(res => res.json())
       .then(json => {
+        console.log(json);
         if(json.token){
         localStorage.setItem('token', json.token);
-        localStorage.setItem('user_id', json.user_id);
-        localStorage.setItem('username', json.email);
-        localStorage.setItem('owner', json.value);
+        localStorage.setItem('user_id', json.user.user.id);
+        localStorage.setItem('email', json.user.user.email);
+        localStorage.setItem('owner', json.user.user.owner);
 
         callback("/homepage");
       } else {
@@ -46,7 +48,7 @@ class App extends React.Component{
 
           <Route path="/register" render={(props) => <Register submitLabel="Register" onSubmit={this.register} {...props}/>} />
 
-        { localStorage.getItem('token') ? <Route exact path="/home" render={(props) => <Homepage/>} /> : <Redirect to="/login" /> }
+        { localStorage.getItem('token') ? <Route exact path="/homepage" render={(props) => <Homepage/>} /> : <Redirect to="/login" /> }
         </Switch>
       </Router>
     )
