@@ -38,6 +38,16 @@ class App extends React.Component{
       });
     }
 
+    logout = (callback) => {
+      console.log("logging out");
+      localStorage.removeItem('token')
+      localStorage.removeItem('user_id')
+      localStorage.removeItem('username')
+      localStorage.removeItem('owner')
+      callback('/login')
+    }
+
+
   render(){
     return(
       <Router>
@@ -48,7 +58,7 @@ class App extends React.Component{
 
           <Route path="/register" render={(props) => <Register submitLabel="Register" onSubmit={this.register} {...props}/>} />
 
-        { localStorage.getItem('token') ? <Route exact path="/homepage" render={(props) => <Homepage/>} /> : <Redirect to="/login" /> }
+        { localStorage.getItem('token') ? <Route exact path="/homepage" render={(props) => <Homepage {...props} handleClick={this.logout}/>} /> : <Redirect to="/login" /> }
         </Switch>
       </Router>
     )
