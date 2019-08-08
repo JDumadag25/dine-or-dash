@@ -11,6 +11,29 @@ import { BrowserRouter as Router, Route, Redirect, Switch, withRouter } from 're
 
 class App extends React.Component{
 
+  login = (username, password, callback) => {
+      console.log(callback);
+      fetch('http://localhost:3000/api/v1/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({ username, password })})
+        .then(res => res.json())
+        .then(json => {
+          if(json.token){
+            localStorage.setItem('token', json.token);
+            localStorage.setItem('user_id', json.user.user.id);
+            localStorage.setItem('email', json.user.user.email);
+            localStorage.setItem('owner', json.user.user.owner);
+
+            callback("/homepage");
+        } else {
+          this.setState({errors: [json.errors]})
+        }
+        });
+    }
 
   register = (email, password, owner, callback) => {
     console.log('posting');
@@ -41,8 +64,8 @@ class App extends React.Component{
     logout = (callback) => {
       console.log("logging out");
       localStorage.removeItem('token')
+      localStorage.removeItem('email')
       localStorage.removeItem('user_id')
-      localStorage.removeItem('username')
       localStorage.removeItem('owner')
       callback('/login')
     }
