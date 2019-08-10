@@ -2,6 +2,23 @@ import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
 class LogIn extends React.Component{
+
+  handleChange = (event) => {
+  this.setState({
+    [event.target.name]: event.target.value,
+  })
+ }
+
+handleSubmit = (event) => {
+  event.preventDefault();
+  console.log(this.props);
+  if (this.state.password === this.state.passwordConfirmation){
+  this.props.onSubmit(this.state.email, this.state.password, this.props.history.push)
+ } else {
+  this.setState({errors: ['Invalid Credentials']})
+ }
+}
+
   render(){
     return(
       <div>
