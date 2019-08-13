@@ -77,7 +77,7 @@ class App extends React.Component{
         <Switch>
           <Route exact path="/" component={Splashpage} />
 
-          <Route path="/login" render={(props) => <LogIn/>} />
+          <Route path="/login" render={(props) => <LogIn onSubmit={this.login} {...props} errors={this.state.errors}  />} />
 
           <Route path="/register" render={(props) => <Register submitLabel="Register" onSubmit={this.register} {...props}/>} />
 

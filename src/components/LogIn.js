@@ -3,6 +3,11 @@ import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui
 
 class LogIn extends React.Component{
 
+  state = {
+    email: '',
+    password: '',
+  }
+
   handleChange = (event) => {
   this.setState({
     [event.target.name]: event.target.value,
@@ -28,7 +33,7 @@ handleSubmit = (event) => {
             Log-in to your account
           </Header>
 
-      <Form size='large'>
+      <Form size='large' onSubmit={this.handleSubmit}>
       <Segment stacked>
         <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
         <Form.Input
