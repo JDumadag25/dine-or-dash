@@ -12,9 +12,10 @@ import { BrowserRouter as Router, Route, Redirect, Switch, withRouter } from 're
 class App extends React.Component{
 
   login = (username, password, callback) => {
+    console.log('hello');
       console.log(callback);
-      fetch('http://localhost:3000/api/v1/users', {
-        method: 'POST',
+      fetch('http://localhost:3000/api/v1/profile', {
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -77,7 +78,7 @@ class App extends React.Component{
         <Switch>
           <Route exact path="/" component={Splashpage} />
 
-          <Route path="/login" render={(props) => <LogIn onSubmit={this.login} {...props} errors={this.state.errors}  />} />
+          <Route path="/login" render={(props) => <LogIn onSubmit={this.login} {...props}  />} />
 
           <Route path="/register" render={(props) => <Register submitLabel="Register" onSubmit={this.register} {...props}/>} />
 

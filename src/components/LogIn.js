@@ -6,6 +6,7 @@ class LogIn extends React.Component{
   state = {
     email: '',
     password: '',
+    errors: []
   }
 
   handleChange = (event) => {
@@ -16,15 +17,16 @@ class LogIn extends React.Component{
 
 handleSubmit = (event) => {
   event.preventDefault();
-  console.log(this.props);
-  if (this.state.password === this.state.passwordConfirmation){
-  this.props.onSubmit(this.state.email, this.state.password, this.props.history.push)
- } else {
-  this.setState({errors: ['Invalid Credentials']})
- }
+
+ //  if (this.state.password === this.state.passwordConfirmation){
+ this.props.onSubmit(this.state.email, this.state.password, this.props.history.push)
+ // } else {
+ //  this.setState({errors: ['Invalid Credentials']})
+ // }
 }
 
   render(){
+    const errors = this.state.errors.map(error => <h3>{error}</h3>)
     return(
       <div>
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -32,7 +34,7 @@ handleSubmit = (event) => {
           <Header as='h2' color='teal' textAlign='center'>
             Log-in to your account
           </Header>
-
+          {errors}
       <Form size='large' onSubmit={this.handleSubmit}>
       <Segment stacked>
         <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
