@@ -10,6 +10,8 @@ class LogIn extends React.Component{
   }
 
   handleChange = (event) => {
+    console.log(event.target.name);
+    console.log(event.target.value);
   this.setState({
     [event.target.name]: event.target.value,
   })
@@ -37,13 +39,15 @@ handleSubmit = (event) => {
           {errors}
       <Form size='large' onSubmit={this.handleSubmit}>
       <Segment stacked>
-        <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
+        <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' name='email' onChange={this.handleChange}/>
         <Form.Input
           fluid
           icon='lock'
           iconPosition='left'
           placeholder='Password'
           type='password'
+          name='password'
+          onChange={this.handleChange}
         />
         <Button color='teal' fluid size='large'>
           Login

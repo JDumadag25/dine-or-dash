@@ -11,16 +11,17 @@ import { BrowserRouter as Router, Route, Redirect, Switch, withRouter } from 're
 
 class App extends React.Component{
 
-  login = (username, password, callback) => {
+  login = (email, password, callback) => {
     console.log('hello');
       console.log(callback);
-      fetch('http://localhost:3000/api/v1/profile', {
-        method: 'GET',
+      fetch('http://localhost:3000/api/v1/users', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
+
         },
-        body: JSON.stringify({ username, password })})
+        body: JSON.stringify({ email, password })})
         .then(res => res.json())
         .then(json => {
           if(json.token){
