@@ -16,6 +16,7 @@ class App extends React.Component{
   }
 
   getProfile = () => {
+    console.log('hello from getting profile');
     const token = localStorage.token
     if(token){
       return fetch("http://localhost:3000/api/v1/profile", {
@@ -32,8 +33,6 @@ class App extends React.Component{
   }
 
   login = (email, password, callback) => {
-    console.log(email);
-    console.log(password);
     console.log('hello from login');
       console.log(callback);
       fetch('http://localhost:3000/api/v1/login', {
@@ -46,8 +45,8 @@ class App extends React.Component{
         body: JSON.stringify({ email, password })})
         .then(res => res.json())
         .then(json => {
-          if(json.token){
-            localStorage.setItem('token', json.token);
+          if(json.jwt){
+            localStorage.setItem('token', json.jwt);
             // localStorage.setItem('user_id', json.user.user.id);
             // localStorage.setItem('email', json.user.user.email);
             // localStorage.setItem('owner', json.user.user.owner);
@@ -79,7 +78,7 @@ class App extends React.Component{
         // localStorage.setItem('email', json.user.user.email);
         // localStorage.setItem('owner', json.user.user.owner);
 
-        //callback("/homepage");
+        callback("/homepage");
       } else {
         console.log(json.errors);
         this.setState({errors:[json.errors]})
