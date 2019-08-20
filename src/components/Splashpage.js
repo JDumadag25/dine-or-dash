@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from 'semantic-ui-react'
 
+
 class SplashPage extends React.Component{
 
   render(){

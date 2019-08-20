@@ -11,14 +11,36 @@ import { BrowserRouter as Router, Route, Redirect, Switch, withRouter } from 're
 
 class App extends React.Component{
 
+  componentDidMount = () => {
+    this.getProfile()
+  }
+
+  getProfile = () => {
+    const token = localStorage.token
+    if(token){
+      return fetch("http://localhost:3000/api/v1/profile", {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then(res => res.json())
+      .then(res => console.log(res))
+    }
+  }
+
   login = (email, password, callback) => {
-    console.log('hello');
+    console.log(email);
+    console.log(password);
+    console.log('hello from login');
       console.log(callback);
-      fetch('http://localhost:3000/api/v1/users', {
+      fetch('http://localhost:3000/api/v1/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
+          Accept: 'application/json',
 
         },
         body: JSON.stringify({ email, password })})
@@ -26,9 +48,9 @@ class App extends React.Component{
         .then(json => {
           if(json.token){
             localStorage.setItem('token', json.token);
-            localStorage.setItem('user_id', json.user.user.id);
-            localStorage.setItem('email', json.user.user.email);
-            localStorage.setItem('owner', json.user.user.owner);
+            // localStorage.setItem('user_id', json.user.user.id);
+            // localStorage.setItem('email', json.user.user.email);
+            // localStorage.setItem('owner', json.user.user.owner);
 
             callback("/homepage");
         } else {
@@ -36,6 +58,8 @@ class App extends React.Component{
         }
         });
     }
+
+
 
   register = (email, password, owner, callback) => {
     console.log('posting');
@@ -51,11 +75,11 @@ class App extends React.Component{
         console.log(json);
         if(json.token){
         localStorage.setItem('token', json.token);
-        localStorage.setItem('user_id', json.user.user.id);
-        localStorage.setItem('email', json.user.user.email);
-        localStorage.setItem('owner', json.user.user.owner);
+        // localStorage.setItem('user_id', json.user.user.id);
+        // localStorage.setItem('email', json.user.user.email);
+        // localStorage.setItem('owner', json.user.user.owner);
 
-        callback("/homepage");
+        //callback("/homepage");
       } else {
         console.log(json.errors);
         this.setState({errors:[json.errors]})
