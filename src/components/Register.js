@@ -21,10 +21,35 @@ toggleOwner = async () => {
   }
 
 handleSubmit = (event) => {
+  const {email, password, owner} = this.state;
    event.preventDefault();
    console.log(this.props);
    if (this.state.password === this.state.passwordConfirmation){
-   this.props.onSubmit(this.state.email, this.state.password, this.state.owner, this.props.history.push)
+   //this.props.onSubmit(this.state.email, this.state.password, this.state.owner, this.props.history.push)
+   console.log('posting');
+   fetch('http://localhost:3000/api/v1/users', {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/json',
+       'Accept': 'application/json',
+     },
+     body: JSON.stringify({ email, password, owner})})
+     .then(res => res.json())
+     .then(json => {
+       console.log(json);
+       if(json.token){
+       localStorage.setItem('token', json.token);
+       // localStorage.setItem('user_id', json.user.user.id);
+       // localStorage.setItem('email', json.user.user.email);
+       // localStorage.setItem('owner', json.user.user.owner);
+       //callback("/homepage");
+
+       this.props.history.push('/homepage')
+     } else {
+       console.log(json.errors);
+       this.setState({errors:[json.errors]})
+     }
+     });
   } else {
    this.setState({errors: ['Passwords do not match']})
   }

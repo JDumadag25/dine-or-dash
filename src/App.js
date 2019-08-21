@@ -32,59 +32,59 @@ class App extends React.Component{
     }
   }
 
-  login = (email, password, callback) => {
-    console.log('hello from login');
-      console.log(callback);
-      fetch('http://localhost:3000/api/v1/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
+  // login = (email, password, callback) => {
+  //   console.log('hello from login');
+  //     console.log(callback);
+  //     fetch('http://localhost:3000/api/v1/login', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         Accept: 'application/json',
+  //
+  //       },
+  //       body: JSON.stringify({ email, password })})
+  //       .then(res => res.json())
+  //       .then(json => {
+  //         if(json.jwt){
+  //           localStorage.setItem('token', json.jwt);
+  //           // localStorage.setItem('user_id', json.user.user.id);
+  //           // localStorage.setItem('email', json.user.user.email);
+  //           // localStorage.setItem('owner', json.user.user.owner
+  //
+  //           callback("/homepage");
+  //       } else {
+  //         this.setState({errors: [json.errors]})
+  //       }
+  //       });
+  //   }
 
-        },
-        body: JSON.stringify({ email, password })})
-        .then(res => res.json())
-        .then(json => {
-          if(json.jwt){
-            localStorage.setItem('token', json.jwt);
-            // localStorage.setItem('user_id', json.user.user.id);
-            // localStorage.setItem('email', json.user.user.email);
-            // localStorage.setItem('owner', json.user.user.owner
 
-            callback("/homepage");
-        } else {
-          this.setState({errors: [json.errors]})
-        }
-        });
-    }
-
-
-
-  register = (email, password, owner, callback) => {
-    console.log('posting');
-    fetch('http://localhost:3000/api/v1/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({ email, password, owner})})
-      .then(res => res.json())
-      .then(json => {
-        console.log(json);
-        if(json.token){
-        localStorage.setItem('token', json.token);
-        // localStorage.setItem('user_id', json.user.user.id);
-        // localStorage.setItem('email', json.user.user.email);
-        // localStorage.setItem('owner', json.user.user.owner);
-
-        callback("/homepage");
-      } else {
-        console.log(json.errors);
-        this.setState({errors:[json.errors]})
-      }
-      });
-    }
+   
+  // register = (email, password, owner, callback) => {
+  //   console.log('posting');
+  //   fetch('http://localhost:3000/api/v1/users', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Accept': 'application/json',
+  //     },
+  //     body: JSON.stringify({ email, password, owner})})
+  //     .then(res => res.json())
+  //     .then(json => {
+  //       console.log(json);
+  //       if(json.token){
+  //       localStorage.setItem('token', json.token);
+  //       // localStorage.setItem('user_id', json.user.user.id);
+  //       // localStorage.setItem('email', json.user.user.email);
+  //       // localStorage.setItem('owner', json.user.user.owner);
+  //
+  //       callback("/homepage");
+  //     } else {
+  //       console.log(json.errors);
+  //       this.setState({errors:[json.errors]})
+  //     }
+  //     });
+  //   }
 
     logout = (callback) => {
       console.log("logging out");
