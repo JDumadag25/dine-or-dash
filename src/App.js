@@ -49,7 +49,7 @@ class App extends React.Component{
             localStorage.setItem('token', json.jwt);
             // localStorage.setItem('user_id', json.user.user.id);
             // localStorage.setItem('email', json.user.user.email);
-            // localStorage.setItem('owner', json.user.user.owner);
+            // localStorage.setItem('owner', json.user.user.owner
 
             callback("/homepage");
         } else {
@@ -106,7 +106,9 @@ class App extends React.Component{
 
           <Route path="/register" render={(props) => <Register submitLabel="Register" onSubmit={this.register} {...props}/>} />
 
-        { localStorage.getItem('token') ? <Route exact path="/homepage" render={(props) => <Homepage {...props} handleClick={this.logout}/>} /> : <Redirect to="/login" /> }
+          <Route path="/homepage" render={(props) => <Homepage {...props} handleClick={this.logout}/>}/>
+
+        // { localStorage.getItem('token') ? <Route path="/homepage" render={(props) => <Homepage {...props} handleClick={this.logout}/>} /> : <Redirect to="/login" /> }
         </Switch>
       </Router>
     )
