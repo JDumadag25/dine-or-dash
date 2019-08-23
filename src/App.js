@@ -6,6 +6,7 @@ import LogIn from './components/LogIn'
 import Register from './components/Register'
 import Homepage from './components/Homepage'
 import Splashpage from './components/Splashpage'
+import DeliRegistration from './components/DeliRegistration'
 
 import { BrowserRouter as Router, Route, Redirect, Switch, withRouter } from 'react-router-dom';
 
@@ -59,7 +60,7 @@ class App extends React.Component{
   //   }
 
 
-   
+
   // register = (email, password, owner, callback) => {
   //   console.log('posting');
   //   fetch('http://localhost:3000/api/v1/users', {
@@ -100,6 +101,9 @@ class App extends React.Component{
     return(
       <Router>
         <Switch>
+
+          <DeliRegistration/>
+
           <Route exact path="/" component={Splashpage} />
 
           <Route path="/login" render={(props) => <LogIn onSubmit={this.login} {...props}  />} />
