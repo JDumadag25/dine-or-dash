@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
 
 const options = [
   { text: 'California ', value: 'california' },
@@ -9,21 +9,32 @@ const options = [
 
 class DeliRegistration extends React.Component {
 
+
+  handleChange = (event) => {
+  this.setState({
+    [event.target.name]: event.target.value,
+  })
+ }
+
+ handleSubmit = () => {
+   console.log('click');
+ }
+
   render(){
     return(
-    <Form>
+    <Form onSubmit={this.handleSubmit}>
       <Form.Field>
         <label>Establishment Name</label>
-        <input placeholder='Establishment Name' />
+        <input placeholder='Establishment Name' name='establishmentname' onChange={this.handleChange}/>
       </Form.Field>
       <Form.Field>
         <label>Address</label>
-        <input placeholder='Address' />
+        <input placeholder='Address' name='address' onChange={this.handleChange}/>
       </Form.Field>
         <Form.Group widths='equal'>
-           <Form.Input fluid label='City' placeholder='City' />
-           <Form.Select fluid label='State' options={options} placeholder='State' />
-           <Form.Input fluid label='zipcode'  placeholder='zipcode' />
+           <Form.Input fluid label='City' name='city' placeholder='City' onChange={this.handleChange} />
+           <Form.Select fluid label='State' name='state' options={options} placeholder='State' onChange={this.handleChange}/>
+           <Form.Input fluid label='zipcode' name='zipcode'  placeholder='zipcode' onChange={this.handleChange}/>
          </Form.Group>
       <Button type='submit'>Submit</Button>
   </Form>
