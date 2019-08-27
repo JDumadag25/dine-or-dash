@@ -102,7 +102,7 @@ class App extends React.Component{
       <Router>
         <Switch>
 
-          <DeliRegistration/>
+          
 
           <Route exact path="/" component={Splashpage} />
 
