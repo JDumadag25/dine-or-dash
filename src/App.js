@@ -102,7 +102,7 @@ class App extends React.Component{
       <Router>
         <Switch>
 
-          
+
 
           <Route exact path="/" component={Splashpage} />
 
@@ -111,6 +111,8 @@ class App extends React.Component{
           <Route path="/register" render={(props) => <Register submitLabel="Register" onSubmit={this.register} {...props}/>} />
 
           <Route path="/homepage" render={(props) => <Homepage {...props} handleClick={this.logout}/>}/>
+
+          <Route exact path='/deliregister' component={DeliRegistration} />
 
         // { localStorage.getItem('token') ? <Route path="/homepage" render={(props) => <Homepage {...props} handleClick={this.logout}/>} /> : <Redirect to="/login" /> }
         </Switch>

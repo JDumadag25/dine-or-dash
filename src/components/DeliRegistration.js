@@ -21,6 +21,11 @@ class DeliRegistration extends React.Component {
  }
 
   render(){
+
+    if(!localStorage.getItem('token')){
+      this.props.history.push('/login')
+    }
+    
     return(
     <Form onSubmit={this.handleSubmit}>
       <Form.Field>

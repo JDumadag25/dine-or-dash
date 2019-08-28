@@ -11,7 +11,7 @@ class SplashPage extends React.Component{
       <div>
        <h1>SplashPage</h1>
        <Link to='/login'><Button>Login</Button></Link>
-      <Link to='/register'><Button>Register</Button></Link>
+       <Link to='/register'><Button>Register</Button></Link>
       </div>
     )
   }
