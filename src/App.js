@@ -4,9 +4,10 @@ import './App.css';
 
 import LogIn from './components/LogIn'
 import Register from './components/Register'
-import Homepage from './components/Homepage'
+import OwnerHomepage from './components/OwnerHomepage'
 import Splashpage from './components/Splashpage'
 import DeliRegistration from './components/DeliRegistration'
+import UserHomepage from './components/UserHomepage'
 
 import { BrowserRouter as Router, Route, Redirect, Switch, withRouter } from 'react-router-dom';
 
@@ -110,11 +111,13 @@ class App extends React.Component{
 
           <Route path="/register" render={(props) => <Register submitLabel="Register" onSubmit={this.register} {...props}/>} />
 
-          <Route path="/homepage" render={(props) => <Homepage {...props} handleClick={this.logout}/>}/>
+          <Route path="/ownerhomepage" render={(props) => <OwnerHomepage {...props} handleClick={this.logout}/>}/>
+
+          <Route exact path='/userhomepage' component={UserHomepage} />
 
           <Route exact path='/deliregister' component={DeliRegistration} />
 
-        // { localStorage.getItem('token') ? <Route path="/homepage" render={(props) => <Homepage {...props} handleClick={this.logout}/>} /> : <Redirect to="/login" /> }
+
         </Switch>
       </Router>
     )
@@ -122,3 +125,5 @@ class App extends React.Component{
 }
 
 export default App;
+
+// { localStorage.getItem('token') ? <Route path="/homepage" render={(props) => <Homepage {...props} handleClick={this.logout}/>} /> : <Redirect to="/login" /> }

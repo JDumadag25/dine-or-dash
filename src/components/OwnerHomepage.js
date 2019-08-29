@@ -1,8 +1,8 @@
 import React from 'react'
 import { Button } from 'semantic-ui-react'
-import { BrowserRouter as Router, Route, Redirect, Switch, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch, withRouter, Link } from 'react-router-dom';
 
-class Homepage extends React.Component{
+class OwnerHomepage extends React.Component{
 
 
   onClick = () => {
@@ -16,11 +16,12 @@ class Homepage extends React.Component{
     }
     return(
       <div>
-       <h1>Homepage</h1>
+       <h1>OwnerHomepage</h1>
        <Button onClick={this.onClick}>Log Out</Button>
+       <Link to='/deliregister'><Button>Register your Restauraunt</Button></Link>
       </div>
     )
   }
 }
 
-export default Homepage
+export default OwnerHomepage
