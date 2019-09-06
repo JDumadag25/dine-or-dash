@@ -103,8 +103,6 @@ class App extends React.Component{
       <Router>
         <Switch>
 
-
-
           <Route exact path="/" component={Splashpage} />
 
           <Route path="/login" render={(props) => <LogIn onSubmit={this.login} {...props}  />} />

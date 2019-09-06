@@ -39,12 +39,12 @@ handleSubmit = (event) => {
        console.log(json);
        if(json.token){
        localStorage.setItem('token', json.token);
-       // localStorage.setItem('user_id', json.user.user.id);
-       // localStorage.setItem('email', json.user.user.email);
-       // localStorage.setItem('owner', json.user.user.owner);
+       localStorage.setItem('user_id', json.user.user.id);
+       localStorage.setItem('email', json.user.user.email);
+       localStorage.setItem('owner', json.user.user.owner);
        //callback("/homepage");
 
-       this.props.history.push('/homepage')
+       this.props.history.push('/ownerhomepage')
      } else {
        console.log(json.errors);
        this.setState({errors:[json.errors]})

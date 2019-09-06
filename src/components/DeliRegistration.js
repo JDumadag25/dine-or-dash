@@ -16,6 +16,11 @@ class DeliRegistration extends React.Component {
   })
  }
 
+handleSubmit = () => {
+   console.log('submitting');
+
+ }
+
  handleSubmit = () => {
    console.log('click');
  }
@@ -25,7 +30,7 @@ class DeliRegistration extends React.Component {
     if(!localStorage.getItem('token')){
       this.props.history.push('/login')
     }
-    
+
     return(
     <Form onSubmit={this.handleSubmit}>
       <Form.Field>
