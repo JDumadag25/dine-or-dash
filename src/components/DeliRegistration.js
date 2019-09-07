@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Form } from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
 
 const options = [
   { text: 'California ', value: 'california' },
@@ -47,6 +48,7 @@ handleSubmit = () => {
            <Form.Input fluid label='zipcode' name='zipcode'  placeholder='zipcode' onChange={this.handleChange}/>
          </Form.Group>
       <Button type='submit'>Submit</Button>
+      <Link to='/ownerhomepage'><Button>Back</Button></Link>
   </Form>
     )
   }

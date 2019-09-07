@@ -14,6 +14,10 @@ class OwnerHomepage extends React.Component{
     if(!localStorage.getItem('token')){
       this.props.history.push('/login')
     }
+
+    if(localStorage.getItem('owner') === false ){
+      this.props.history.push('login')
+    }
     return(
       <div>
        <h1>OwnerHomepage</h1>
